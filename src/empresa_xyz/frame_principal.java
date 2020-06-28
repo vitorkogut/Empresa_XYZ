@@ -99,7 +99,12 @@ public class frame_principal extends javax.swing.JFrame {
 
     private void bAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddClienteActionPerformed
         
-        fADD_cliente frame = new fADD_cliente();
+        fADD_cliente frame = null;
+        try {
+            frame = new fADD_cliente();
+        } catch (SQLException ex) {
+            Logger.getLogger(frame_principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         frame.setVisible(true);
         
     }//GEN-LAST:event_bAddClienteActionPerformed

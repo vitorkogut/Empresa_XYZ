@@ -115,6 +115,7 @@ public class fADD_estado extends javax.swing.JFrame {
         
         controller.insere_estado(estado); 
         
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

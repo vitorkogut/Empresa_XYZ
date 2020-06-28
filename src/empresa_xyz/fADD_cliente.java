@@ -11,6 +11,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -109,6 +110,11 @@ public class fADD_cliente extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(153, 255, 153));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton1.setText("ADICIONAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,6 +217,41 @@ public class fADD_cliente extends javax.swing.JFrame {
         boxCidade.setModel(model);
         
     }//GEN-LAST:event_boxEstadoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        SQL_controlador controler = new SQL_controlador();
+        
+        String nome;
+        String email;
+        String rua;
+        String numero;
+        String telefone;
+        int id_estado;
+        int id_cidade;
+        
+        if( bNome.getText().isEmpty()    ||
+            bEmail.getText().isEmpty()   ||
+            bRua.getText().isEmpty()     ||
+            bNumero.getText().isEmpty()  ||
+            bTelefone.getText().isEmpty()||
+            boxEstado.getSelectedItem() == null||
+            boxCidade.getSelectedItem() == null){
+            javax.swing.JOptionPane.showMessageDialog(this, "tu é burro man. preenche tudo ae", "DEU RUIM!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        nome = bNome.getText();
+        email = bEmail.getText();
+        rua = bRua.getText();
+        numero = bNumero.getText();
+        telefone = bTelefone.getText();
+        id_estado = controler.retorna_id_estado(boxEstado.getSelectedItem().toString());
+        id_cidade = controler.retorna_id_cidade(boxCidade.getSelectedItem().toString());
+        controler.insere_cliente(nome, email, rua, numero, telefone, id_cidade, id_estado);
+        javax.swing.JOptionPane.showMessageDialog(this, "parabens, cliente inserido", "Deu bom!", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

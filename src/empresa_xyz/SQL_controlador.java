@@ -97,6 +97,35 @@ public class SQL_controlador {
         return id;
     }
     
+        public int retorna_id_cidade(String cidade){
+        int id = -1;
+        
+        try{
+           conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/empresa_xyz?useSSL=false", "root","root");
+           System.err.println("coneção criada= " + conn);
+
+           Statement stm = ( Statement ) conn.createStatement();
+           System.err.println("Statmente criado!");
+
+           ResultSet rs = stm.executeQuery("SELECT id FROM cidade WHERE cidade = '"+ cidade +"'" );
+           rs.next();
+           return rs.getInt("id");
+                   
+        }catch(Exception e){
+            
+        }
+
+        return id;
+    }
+    
+    public boolean insere_cliente(String nome, String email, String rua, String numero, String telefone, int cidade_id, int cidade_estado_id){
+
+        String comando = "INSERT INTO cliente(nome, email, rua, numero, telefone, cidade_id, cidade_estado_id) VALUES ('"+ nome +"', '"+ email +"', '"+ rua +"', '"+ numero +"', '"+ telefone +"', '"+ cidade_id +"', '"+ cidade_estado_id +"')";
+        executa_querry(comando);
+        return true;
+
+    }
+        
     public boolean insere_cidade(String cidade, int estado){
 
         String comando = "INSERT INTO cidade(cidade, estado_id) VALUES ('"+ cidade +"', '"+ estado +"')";

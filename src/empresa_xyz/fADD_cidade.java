@@ -155,13 +155,9 @@ public class fADD_cidade extends javax.swing.JFrame {
                     
         }
         
-        
-        
-        
-
-        
         controlador.insere_cidade(tCidade.getText(), id);
    
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
