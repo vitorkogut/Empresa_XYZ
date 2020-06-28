@@ -58,6 +58,11 @@ public class frame_principal extends javax.swing.JFrame {
         });
 
         jButton3.setText("Adicionar pacote");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,6 +113,11 @@ public class frame_principal extends javax.swing.JFrame {
         frame.setVisible(true);
         
     }//GEN-LAST:event_bAddClienteActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        fADD_pacote frame = new fADD_pacote();
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -173,6 +173,133 @@ public class SQL_controlador {
     }
     
     
+    public ResultSet retorna_status() throws SQLException{
+        try{
+           conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/empresa_xyz?useSSL=false", "root","root");
+           System.err.println("coneção criada= " + conn);
+
+           Statement stm = ( Statement ) conn.createStatement();
+           System.err.println("Statmente criado!");
+
+           ResultSet rs = stm.executeQuery("SELECT status FROM status");
+           return rs;
+                   
+        }catch(Exception e){
+            
+        }
+        
+        System.out.println("deu ruim");
+        return null;
+    }
+    
+    
+    public ResultSet retorna_clientes() throws SQLException{
+        try{
+           conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/empresa_xyz?useSSL=false", "root","root");
+           System.err.println("coneção criada= " + conn);
+
+           Statement stm = ( Statement ) conn.createStatement();
+           System.err.println("Statmente criado!");
+
+           ResultSet rs = stm.executeQuery("SELECT nome FROM cliente");
+           return rs;
+                   
+        }catch(Exception e){
+            
+        }
+        
+        System.out.println("deu ruim");
+        return null;
+    }
+    
+    public int retorna_id_cliente(String cliente){
+        int id = -1;
+        
+        try{
+           conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/empresa_xyz?useSSL=false", "root","root");
+           System.err.println("coneção criada= " + conn);
+
+           Statement stm = ( Statement ) conn.createStatement();
+           System.err.println("Statmente criado!");
+
+           ResultSet rs = stm.executeQuery("SELECT id FROM cliente WHERE nome = '"+ cliente +"'" );
+           rs.next();
+           return rs.getInt("id");
+                   
+        }catch(Exception e){
+            
+        }
+
+        return id;
+    }
+    
+    
+    public int retorna_id_status(String status){
+        int id = -1;
+        
+        try{
+           conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/empresa_xyz?useSSL=false", "root","root");
+           System.err.println("coneção criada= " + conn);
+
+           Statement stm = ( Statement ) conn.createStatement();
+           System.err.println("Statmente criado!");
+
+           ResultSet rs = stm.executeQuery("SELECT id FROM status WHERE status = '"+ status +"'" );
+           rs.next();
+           return rs.getInt("id");
+                   
+        }catch(Exception e){
+            
+        }
+
+        return id;
+    }
+    
+    public boolean insere_pacote(String data_entrada, String data_entrega, float peso, int largura, int altura, int profundidade, String rua, String numero, int status, int id_cidade, int id_estado, int id_cliente){
+
+        int cliente_cidade_id = 0;
+        int cliente_cidade_estado_id = 0;
+        
+        try{
+           conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/empresa_xyz?useSSL=false", "root","root");
+           System.err.println("coneção criada= " + conn);
+
+           Statement stm = ( Statement ) conn.createStatement();
+           System.err.println("Statmente criado!");
+
+           ResultSet rs = stm.executeQuery("SELECT cidade_id FROM cliente WHERE id = '"+ id_cliente +"'" );
+           rs.next();
+           cliente_cidade_id = rs.getInt("cidade_id");
+                   
+        }catch(Exception e){
+            
+        }
+        
+        try{
+           conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/empresa_xyz?useSSL=false", "root","root");
+           System.err.println("coneção criada= " + conn);
+
+           Statement stm = ( Statement ) conn.createStatement();
+           System.err.println("Statmente criado!");
+
+           ResultSet rs = stm.executeQuery("SELECT cidade_estado_id FROM cliente WHERE id = '"+ id_cliente +"'" );
+           rs.next();
+           cliente_cidade_estado_id = rs.getInt("cidade_estado_id");
+                   
+        }catch(Exception e){
+            
+        }
+        
+        
+        
+        
+        String comando = "INSERT INTO pacote(data_entrada, data_entrega, peso, largura, altura, profundidade, rua, numero, status_id, cidade_id, cidade_estado_id, cliente_id, cliente_cidade_id, cliente_cidade_estado_id)"
+                + " VALUES ('"+ data_entrada +"', '"+ data_entrega +"', '"+ peso +"', '"+ largura +"', '"+ altura +"', '"+ profundidade +"', '"+ rua +"', '"+ numero +"', '"+ status +"', '"+ id_cidade +"', '"+ id_estado +"', '"+ id_cliente +"', '"+ cliente_cidade_id +"', '"+ cliente_cidade_estado_id +"')";
+        executa_querry(comando);
+        return true;
+
+    }
+        
     
     
     
