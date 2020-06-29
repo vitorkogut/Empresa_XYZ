@@ -1,0 +1,9 @@
+
+INSERT INTO status(status) VALUES ('EM ESPERA');
+INSERT INTO status(status) VALUES ('EM ENTEGA');
+INSERT INTO status(status) VALUES ('TRANSPORTADORA');
+INSERT INTO status(status) VALUES ('DISTRIBUIDORA');
+INSERT INTO status(status) VALUES ('A CAMINHO');
+INSERT INTO status(status) VALUES ('DEU ENTRADA');
+
+
